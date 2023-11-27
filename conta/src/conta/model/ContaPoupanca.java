@@ -1,39 +1,26 @@
 package conta.model;
 
-public class ContaPoupanca {
+public class ContaPoupanca extends Conta{
 
-	public static void main(String[] args) {
-		class ContaPoupanca {
-		    private String numero;
-		    private double saldo;
+	private int aniversario;
 
-		    // Construtor, getters e setters aqui
-
-		    public void depositar(double valor) {
-		        saldo += valor;
-		        System.out.println("Depósito de R$ " + valor + " realizado na Conta Poupança. Novo saldo: R$ " + saldo);
-		    }
-
-		    public void sacar(double valor) {
-		        if (valor <= saldo) {
-		            saldo -= valor;
-		            System.out.println("Saque de R$ " + valor + " realizado na Conta Poupança. Novo saldo: R$ " + saldo);
-		        } else {
-		            System.out.println("Saldo insuficiente para saque na Conta Poupança.");
-		        }
-
-
+	public ContaPoupanca(int numero, int agencia, int tipo, String titular, float saldo, int aniversario) {
+		super(numero, agencia, tipo, titular, saldo);
+		this.aniversario = aniversario;
 	}
 
+	public int getAniversario() {
+		return aniversario;
+	}
+
+	public void setAniversario(int aniversario) {
+		this.aniversario = aniversario;
+	}
+	
+    @Override
+	public void visualizar() {
+		super.visualizar();
+		System.out.println("Aniversário da conta: " + this.aniversario);
+	}
+    
 }
-	}
-
-	public void depositar(double d) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void sacar(double d) {
-		// TODO Auto-generated method stub
-		
-	}

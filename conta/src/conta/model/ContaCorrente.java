@@ -1,27 +1,44 @@
 package conta.model;
 
-public class ContaCorrente {
-
-	public static void main(String[] args) {
-		private String numero;
-	    private double saldo;
-
-	    // Construtor, getters e setters aqui
-
-	    public void depositar(double valor) {
-	        saldo += valor;
-	        System.out.println("Depósito de R$ " + valor + " realizado na Conta Corrente. Novo saldo: R$ " + saldo);
-	    }
-
-	    public void sacar(double valor) {
-	        if (valor <= saldo) {
-	            saldo -= valor;
-	            System.out.println("Saque de R$ " + valor + " realizado na Conta Corrente. Novo saldo: R$ " + saldo);
-	        } else {
-	            System.out.println("Saldo insuficiente para saque na Conta Corrente.");
-	        }
+public class ContaCorrente extends Conta{
+	
+	private float limite;
 
 
+	public ContaCorrente(int numero, int agencia, int tipo, String titular, float saldo, float limite) {
+		super(numero, agencia, tipo, titular, saldo);
+		this.limite = limite;
+		
+
+	}
+
+
+	public float getLimite() {
+		return limite;
+	}
+
+
+	public void setLimite(float limite) {
+		this.limite = limite;
+	}
+	
+	@Override
+	public boolean sacar(float valor) { 
+		
+		if(this.getSaldo() + this.getLimite() < valor) {
+			System.out.println("\n Saldo Insuficiente!");
+			return false;
+		}
+		
+		this.setSaldo(this.getSaldo() - valor);
+		return true;
+		
+}
+	
+    @Override
+	public void visualizar() {
+		super.visualizar();
+		System.out.println("Limite de Crédito: " + this.limite);
 	}
 
 }
